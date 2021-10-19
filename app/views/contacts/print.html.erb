@@ -1,0 +1,12 @@
+<h1>Print</h1>
+
+<ul>
+  <% @contacts.each do |contact| %>
+    <li>
+        <%= link_to contact.name, contact %><br>
+        <%= contact.phone %><br>
+        <%= contact.email %><br>
+    </li>
+    <br>
+  <% end %>
+</ul>

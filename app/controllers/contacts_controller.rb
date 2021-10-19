@@ -1,7 +1,16 @@
+require 'prawn'
+
 class ContactsController < ApplicationController
   def index
     @contacts = Contact.all
     HardWorker.perform_async('teste dentro dos contatos')
+  end
+
+  def print
+    @contacts = Contact.all
+    # pdf = Prawn::Document.new
+    # pdf.text("Prawn Rocks")
+    # pdf.render_file('prawn.pdf')
   end
 
   def show
