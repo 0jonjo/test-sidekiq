@@ -1,6 +1,7 @@
 class ContactsController < ApplicationController
   def index
     @contacts = Contact.all
+    HardWorker.perform_async('teste dentro dos contatos')
   end
 
   def show
