@@ -1,16 +1,19 @@
-require 'prawn'
+#require 'prawn'
 
 class ContactsController < ApplicationController
+  helper_method :printer
+
   def index
     @contacts = Contact.all
-    HardWorker.perform_async('teste dentro dos contatos')
   end
 
   def print
-    @contacts = Contact.all
-    # pdf = Prawn::Document.new
-    # pdf.text("Prawn Rocks")
-    # pdf.render_file('prawn.pdf')
+    HardWorker.perform_async
+    redirect_to root_path
+  end
+
+  def showpdf(pdf)
+    send_data(pdf, :filename => "Contacts.pdf", :type => "application/pdf") 
   end
 
   def show
